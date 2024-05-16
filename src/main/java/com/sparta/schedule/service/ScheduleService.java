@@ -6,6 +6,8 @@ import com.sparta.schedule.entity.Schedule;
 import com.sparta.schedule.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleService {
 
@@ -22,5 +24,9 @@ public class ScheduleService {
         ScheduleResponseDto scheduleResponseDto = new ScheduleResponseDto(savedSchedule);
 
         return scheduleResponseDto;
+    }
+
+    public List<ScheduleResponseDto> getSchedule(Long id) {
+       return scheduleRepository.findById(id).stream().map(ScheduleResponseDto::new).toList();
     }
 }
